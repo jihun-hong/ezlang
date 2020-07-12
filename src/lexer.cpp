@@ -1,9 +1,9 @@
 #include "lexer.h"
 
 
-#define SUCCESS 0       // Success for lexer
-#define ERROR_ARG 1     // Error in argument
-#define ERROR_LEX 2     // Error in lexer
+#define RET_SUCCESS 0       // Success for lexer
+#define RET_ERR_ARG 1     // Error in argument
+#define RET_ERR_LEX 2     // Error in lexer
 
 
 void Lexer::tokenize_line(const std::string& cur_line,
@@ -43,7 +43,7 @@ int Lexer::tokenize(std::string src_file_name) {
     std::fstream src_file_stream;
     src_file_stream.open(src_file_name, std::ios::in);
 
-    if (!src_file_stream.is_open()) return ERROR_LEX;
+    if (!src_file_stream.is_open()) return RET_ERR_LEX;
 
     std::string cur_line;
     int cur_lineno = 1;
@@ -52,7 +52,7 @@ int Lexer::tokenize(std::string src_file_name) {
         tokenize_line(cur_line, src_file_name, cur_lineno);
         cur_lineno++;
     }
-    return SUCCESS;
+    return RET_SUCCESS;
 }
 
 
@@ -66,14 +66,14 @@ static void print_usage(std::string prog_name)
 int main(int argc, char* argv[]) {
     if (argc < 2) {
         print_usage(argv[0]);
-        return ERROR_ARG;
+        return RET_ERR_ARG;
     }
 
     Lexer* lexer = new Lexer();
     for (int i = 1; i < argc; ++i) {
         std::string src_file_name = argv[i];
         int status = lexer->tokenize(src_file_name);
-        if (status != SUCCESS) return status;
+        if (status != RET_SUCCESS) return status;
     }
-    return SUCCESS;
+    return RET_SUCCESS;
 }
