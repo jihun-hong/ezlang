@@ -1,0 +1,15 @@
+Foo:
+Take parameters 'x', 'y', and 'z'.
+'sum of y and z' is 'y' plus 'z'.
+'result' is 'x' minus 'sum of y and z'.
+Return "result."
+
+Bar:
+list_of_numbers is {1, 2, 3}.
+Add 4 to 'list of numbers'.
+Return the 'list of numbers'.
+
+Main: 
+'x' is Foo with 1, 2, and 3. 
+From 1 to 5, add 1 to 'x'.
+Print 'x'.
